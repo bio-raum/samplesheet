@@ -22,8 +22,8 @@ EXTENSIONS = ["*.fastq.gz", "*.fq.gz", "*.fastq", "*.fq"]
 
 def stripext(filename, extlist=EXTENSIONS):
     for ext in extlist:
-        if filename.endswith(ext):
-            return filename[: -len(ext)]
+        if filename.endswith(ext[1:]):  # match without the '*'
+            return filename[: -len(ext[1:])]
     return filename
 
 
@@ -62,14 +62,10 @@ def guess_platform(reads):
 
 def main(folder, output, use_platform, extlist=EXTENSIONS):
     # Get all files endings from EXTENSIONS
-    files = [os.path.abspath(f) for ext in extlist for f in glob.glob(os.path.join(folder, ext))]
+    files = [os.path.realpath(f) for ext in extlist for f in glob.glob(os.path.join(folder, ext))]
 
     samples = {}
-
-    if use_platform:
-        ss = [ "sample\tplatform\tfq1\tfq2"]
-    else:
-        ss = ["sample\tfq1\tfq2"]
+    ss = []
 
     # pair files by name - handles single end too
     for file in files:
@@ -118,7 +114,12 @@ def main(folder, output, use_platform, extlist=EXTENSIONS):
 
     # write to file
     with open(output, "w") as fo:
-        for line in ss:
+        if use_platform:
+            header = [ "sample\tplatform\tfq1\tfq2"]
+        else:
+            header = ["sample\tfq1\tfq2"]
+        fo.write("\t".join(header) + "\n")
+        for line in sorted(ss):
             fo.write(f"{line}\n")
 
 
