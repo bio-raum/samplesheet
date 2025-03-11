@@ -2,16 +2,15 @@
 
 nextflow.enable.dsl = 2
 
-// TODO: Update this block with a description and the name of the pipeline
 /**
 ===============================
-Pipeline
+bio-raum samplesheet pipeline
 ===============================
 
-This Pipeline performs ....
+This Pipeline generates bio-raum compliant samplesheets
 
 ### Homepage / git
-git@github.com:marchoeppner/pipeline.git
+git@github.com:bio-raum/samplesheet.git
 
 **/
 
@@ -24,19 +23,16 @@ run_name = (params.run_name == false) ? "${workflow.sessionId}" : "${params.run_
 
 WorkflowMain.initialise(workflow, params, log)
 
-// TODO: Rename this and the file under lib/ to something matching this pipeline (e.g. WorkflowAmplicons)
 WorkflowPipeline.initialise(params, log)
 
-// TODO: Rename this to something matching this pipeline, e.g. "AMPLICONS"
-include { MAIN } from './workflows/main'
+include { SAMPLESHEET } from './workflows/samplesheet'
 
 multiqc_report = Channel.from([])
 
 workflow {
-    // TODO: Rename to something matching this pipeline (see above)
-    MAIN()
+    SAMPLESHEET()
 
-    multiqc_report = multiqc_report.mix(MAIN.out.qc).toList()
+    multiqc_report = multiqc_report.mix(SAMPLESHEET.out.qc).toList()
 }
 
 workflow.onComplete {
@@ -99,13 +95,13 @@ workflow.onComplete {
                 mqcReport = multiqc_report.getVal()
                 if (mqcReport.getClass() == ArrayList) {
                     // TODO: Update name of pipeline
-                    log.warn "[Pipeline] Found multiple reports from process 'multiqc', will use only one"
+                    log.warn "[bio-raum/samplesheet] Found multiple reports from process 'multiqc', will use only one"
                     mqcReport = mqcReport[0]
                 }
             }
         } catch (all) {
             // TODO: Update name of pipeline
-            log.warn '[PipelineName] Could not attach MultiQC report to summary email'
+            log.warn '[bio-raum/samplesheet] Could not attach MultiQC report to summary email'
         }
 
         smailFields = [ email: params.email, subject: subject, emailText: emailText,
