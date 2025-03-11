@@ -56,11 +56,11 @@ When setting this option, the samplesheet will contain an additional "platform" 
 
 The following options can be set to control resource usage outside of a site-specific [config](https://github.com/marchoeppner/nf-configs) file.
 
-### `--max_cpus` [ default = 16]
+### `--max_cpus` [ default = 8]
 
 The maximum number of cpus a single job can request. This is typically the maximum number of cores available on a compute node or your local (development) machine. 
 
-### `--max_memory` [ default = 128.GB ]
+### `--max_memory` [ default = 16.GB ]
 
 The maximum amount of memory a single job can request. This is typically the maximum amount og RAM available on a compute node or your local (development) machine. Typically it is advisable to set this a little lower than the maximum amount of RAM to prevent the machine from swapping. 
 
