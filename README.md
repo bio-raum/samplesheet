@@ -1,4 +1,8 @@
-# Pipeline
+# bio-raum/samplesheet
+
+This pipeline generates bio-raum compliant sample sheets for pipelines such as [FooDMe2](https://github.com/bio-raum/FoodMe2).
+
+It is advisable to check the resulting sample sheet to make sure it recognized the file naming patterns correctly!
 
 ## Documentation 
 

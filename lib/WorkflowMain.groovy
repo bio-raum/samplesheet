@@ -42,8 +42,6 @@ class WorkflowMain {
             Required parameters:
             --input                        The primary pipeline input (typically a CSV file)
             --email                        Email address to send reports to (enclosed in '')
-            Optional parameters:
-            --run_name                     A descriptive name for this pipeline run
             Output:
             --outdir                       Local directory to which all output is written (default: results)
         """
