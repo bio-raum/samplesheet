@@ -118,7 +118,7 @@ def main(folder, output, use_platform, extlist=EXTENSIONS):
             header = [ "sample\tplatform\tfq1\tfq2"]
         else:
             header = ["sample\tfq1\tfq2"]
-        fo.write("\t".join(header))
+        fo.write("\t".join(header) + "\n")
         for line in sorted(ss):
             fo.write(f"{line}\n")
 
