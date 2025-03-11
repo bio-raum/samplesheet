@@ -11,9 +11,11 @@ import re
 parser = argparse.ArgumentParser(description="Script options")
 parser.add_argument("--folder", "-f", help="path to read folder")
 parser.add_argument("--output", "-o", help="Path to output file")
+parser.add_argument("--version", "-v", action=argparse.BooleanOptionalAction, help="Print version and exist")
 parser.add_argument("--platform", "-p", action=argparse.BooleanOptionalAction, help="Guesses and adds the sequencing platform")
 args = parser.parse_args()
 
+VERSION = "1.0.0"
 
 EXTENSIONS = ["*.fastq.gz", "*.fq.gz", "*.fastq", "*.fq"]
 
@@ -121,4 +123,8 @@ def main(folder, output, use_platform, extlist=EXTENSIONS):
 
 
 if __name__ == '__main__':
-    main(args.folder, args.output, args.platform)
+
+    if args.version:
+        print(VERSION)
+    else:
+        main(args.folder, args.output, args.platform)

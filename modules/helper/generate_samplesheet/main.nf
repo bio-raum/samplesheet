@@ -23,6 +23,7 @@ process HELPER_GENERATE_SAMPLESHEET {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
+        generate_samplesheet.py: \$(generate_samplesheet.py --version)
         python3: \$(python3 --version  | sed -e "s/Python //")
     END_VERSIONS
     """
