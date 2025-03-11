@@ -62,7 +62,7 @@ def guess_platform(reads):
 
 def main(folder, output, use_platform, extlist=EXTENSIONS):
     # Get all files endings from EXTENSIONS
-    files = [os.path.abspath(f) for ext in extlist for f in glob.glob(os.path.join(folder, ext))]
+    files = [os.path.realpath(f) for ext in extlist for f in glob.glob(os.path.join(folder, ext))]
 
     samples = {}
     ss = []
