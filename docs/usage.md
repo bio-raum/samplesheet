@@ -20,6 +20,8 @@ nextflow run bio-raum/samplesheet -profile singularity --input /path/to/reads \\
 
 In this example, the pipeline will assume it runs on a single computer with the singularity container engine available. Available options to provision software are:
 
+`-profile apptainer`
+
 `-profile singularity`
 
 `-profile docker` 

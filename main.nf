@@ -14,22 +14,16 @@ git@github.com:bio-raum/samplesheet.git
 
 **/
 
-// Pipeline version
-params.version = workflow.manifest.version
-
-summary = [:]
-
-run_name = (params.run_name == false) ? "${workflow.sessionId}" : "${params.run_name}"
-
-WorkflowMain.initialise(workflow, params, log)
-
-WorkflowPipeline.initialise(params, log)
-
 include { SAMPLESHEET } from './workflows/samplesheet'
 
-multiqc_report = Channel.from([])
-
 workflow {
+
+    WorkflowMain.initialise(workflow, params, log)
+
+    WorkflowPipeline.initialise(params, log)
+
+    multiqc_report = Channel.from([])
+
     SAMPLESHEET()
 
     multiqc_report = multiqc_report.mix(SAMPLESHEET.out.qc).toList()

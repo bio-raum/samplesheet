@@ -4,17 +4,17 @@ include { HELPER_GENERATE_SAMPLESHEET } from './../modules/helper/generate_sampl
 include { CUSTOM_DUMPSOFTWAREVERSIONS } from './../modules/custom/dumpsoftwareversions'
 include { MULTIQC }                     from './../modules/multiqc'
 
-ch_multiqc_config = params.multiqc_config   ? Channel.fromPath(params.multiqc_config, checkIfExists: true).collect() : Channel.value([])
-ch_multiqc_logo   = params.multiqc_logo     ? Channel.fromPath(params.multiqc_logo, checkIfExists: true).collect() : Channel.value([])
-
-ch_versions = Channel.from([])
-multiqc_files = Channel.from([])
-
-ch_reads = params.input ? Channel.fromPath(params.input, checkIfExists: true) : Channel.from([])
-
 workflow SAMPLESHEET {
 
     main:
+
+    ch_multiqc_config = params.multiqc_config   ? Channel.fromPath(params.multiqc_config, checkIfExists: true).collect() : Channel.value([])
+    ch_multiqc_logo   = params.multiqc_logo     ? Channel.fromPath(params.multiqc_logo, checkIfExists: true).collect() : Channel.value([])
+
+    ch_versions = Channel.from([])
+    multiqc_files = Channel.from([])
+
+    ch_reads = params.input ? Channel.fromPath(params.input, checkIfExists: true) : Channel.from([])
 
     HELPER_GENERATE_SAMPLESHEET(
         ch_reads
@@ -43,15 +43,15 @@ workflow SAMPLESHEET {
 
 def parse_samplesheet(ss) {
 
-    lines = file(ss).readLines()
-    header = lines.pop()
-    samples = []
+    def lines = file(ss).readLines()
+    def header = lines.pop()
+    def samples = []
     // a sample may have more than one pair of files, so we count unique sample ids rather than just lines
     lines.each { line ->
-        sample = line.split("\t")[0]
+        def sample = line.split("\t")[0]
         samples << sample
     }
-    nsamples = samples.unique().size()
+    def nsamples = samples.unique().size()
     log.info "Found $nsamples samples - please make sure this is correct!"
     
 }
