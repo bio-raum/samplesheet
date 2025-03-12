@@ -33,7 +33,7 @@ def getgroup(path):
     filename = os.path.basename(path)
 
     # Regexps to try
-    sra = re.compile("^[E,S]RR[0-9]*.*")  # ERR202156_1.fastq.gz
+    sra = re.compile("^[A-Z]RR[0-9]*.*")  # ERR202156_1.fastq.gz
     illumina = re.compile("^.*_S[0-9]*_L00[0-9]_R[1,2].*")  # samplename_S01_L001_R1_001.fastq.gz
 
     if sra.match(filename):
