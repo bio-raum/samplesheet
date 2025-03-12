@@ -15,10 +15,12 @@ A basic execution of the pipeline looks as follows:
 a) Without a site-specific config file
 
 ```bash
-nextflow run bio-raum/samplesheet -profile singularity --input /path/to/reads \\
+nextflow run bio-raum/samplesheet -profile singularity --input /path/to/reads
 ```
 
 In this example, the pipeline will assume it runs on a single computer with the singularity container engine available. Available options to provision software are:
+
+`-profile apptainer`
 
 `-profile singularity`
 
@@ -32,8 +34,10 @@ Additional software provisioning tools as described [here](https://www.nextflow.
 
 b) with a site-specific config file
 
+Assuming you are using a personalited profile ("yourprofile"):
+
 ```bash
-nextflow run bio-raum/samplesheet -profile lsh --input samples.csv \\
+nextflow run bio-raum/samplesheet -profile yourprofile --input /path/to/reads
 ```
 
 ## Specifying pipeline version
@@ -41,7 +45,7 @@ nextflow run bio-raum/samplesheet -profile lsh --input samples.csv \\
 If you are running this pipeline in a production setting, you will want to lock the pipeline to a specific version. This is natively supported through nextflow with the `-r` argument:
 
 ```bash
-nextflow run bio-raum/samplesheet -profile lsh -r 1.0 <other options here>
+nextflow run bio-raum/samplesheet -profile yourprofile -r 1.0 <other options here>
 ```
 
 The `-r` option specifies a github [release tag](https://github.com/bio-raum/samplesheet/releases) or branch, so could also point to `main` for the very latest code release. Please note that every major release of this pipeline (1.0, 2.0 etc) comes with a new reference data set, which has the be [installed](installation.md) separately.
