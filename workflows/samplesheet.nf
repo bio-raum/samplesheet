@@ -44,7 +44,7 @@ workflow SAMPLESHEET {
 def parse_samplesheet(ss) {
 
     def lines = file(ss).readLines()
-    def header = lines.pop()
+    lines.pop()
     def samples = []
     // a sample may have more than one pair of files, so we count unique sample ids rather than just lines
     lines.each { line ->
