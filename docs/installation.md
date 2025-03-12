@@ -12,6 +12,8 @@ This pipeline is set up to work with a range of software provisioning technologi
 
 You can choose one of the following options:
 
+[Apptainer](https://apptainer.org/docs/admin/main/installation.html)
+
 [Docker](https://docs.docker.com/engine/install/)
 
 [Singularity](https://docs.sylabs.io/guides/3.11/admin-guide/)
@@ -26,4 +28,4 @@ The pipeline comes with simple pre-set profiles for all of these as described [h
 
 If you run on anything other than a local system, this pipeline requires a site-specific configuration file to be able to talk to your cluster or compute infrastructure. Nextflow supports a wide range of such infrastructures, including Slurm, LSF and SGE - but also Kubernetes and AWS. For more information, see [here](https://www.nextflow.io/docs/latest/executor.html).
 
-Site-specific config-files for our pipeline ecosystem are stored centrally on [github](https://github.com/marchoeppner/nf-configs). Please talk to us if you want to add your system.
+Site-specific config-files for our pipeline ecosystem are stored centrally on [github](https://github.com/bio-raum/nf-configs). Please talk to us if you want to add your system.
