@@ -4,7 +4,7 @@
 
 Nextflow is a highly portable pipeline engine. Please see the official [installation guide](https://www.nextflow.io/docs/latest/getstarted.html#installation) to learn how to set it up.
 
-This pipeline expects Nextflow version 23.10.1, available [here](https://github.com/nextflow-io/nextflow/releases/tag/v23.10.1).
+This pipeline expects Nextflow version 24.04.2 or later, available [here](https://github.com/nextflow-io/nextflow/releases/tag/v24.04.2).
 
 ## Software provisioning
 
@@ -22,7 +22,7 @@ You can choose one of the following options:
 
 [Conda](https://github.com/conda-forge/miniforge)
 
-The pipeline comes with simple pre-set profiles for all of these as described [here](usage.md); if you plan to use this pipeline regularly, consider adding your own custom profile to our [central repository](https://github.com/marchoeppner/nf-configs) to better leverage your available resources.
+The pipeline comes with simple pre-set profiles for all of these as described [here](usage.md); if you plan to use this pipeline regularly, consider adding your own custom profile to our [central repository](https://github.com/bio-raum/nf-configs) to better leverage your available resources.
 
 ## Site-specific config file
 

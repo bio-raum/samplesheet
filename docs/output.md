@@ -2,4 +2,4 @@
 
 ## Samplesheet
 
-The samplesheet will be stored under `results` (or another output directory specified with `--outdir`). 
+The samplesheet will be stored under `samplesheet` (or another output directory specified with `--outdir`). 
