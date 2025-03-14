@@ -4,7 +4,6 @@
 
 import argparse
 import glob
-import sys
 import os
 import re
 
@@ -44,7 +43,7 @@ def getgroup(path):
         # If we cannot guess the format, we remove extension
         # and then check if the remaining name ends on what might be the indicator of a read pair (_1, _2) - which we remove, if so.
         bsplit = stripext(filename)
-        pair = re.compile(r"_[,R][1,2]|$")
+        pair = re.compile(r"_R*[1,2]|$")
         if pair.search(bsplit):
             return re.split(pair, bsplit)[0]
         else:
@@ -58,7 +57,7 @@ def guess_platform(reads):
         return "NANOPORE"
     else:
         return "ILLUMINA"
-    
+
 
 def main(folder, output, use_platform, extlist=EXTENSIONS):
     # Get all files endings from EXTENSIONS
@@ -115,7 +114,7 @@ def main(folder, output, use_platform, extlist=EXTENSIONS):
     # write to file
     with open(output, "w") as fo:
         if use_platform:
-            header = [ "sample\tplatform\tfq1\tfq2"]
+            header = ["sample\tplatform\tfq1\tfq2"]
         else:
             header = ["sample\tfq1\tfq2"]
         fo.write("\t".join(header) + "\n")
