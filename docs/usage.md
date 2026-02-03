@@ -54,20 +54,4 @@ The `-r` option specifies a github [release tag](https://github.com/bio-raum/sam
 
 ### `--platform` [default = null]
 
-When setting this option, the samplesheet will contain an additional "platform" column with a best-guess as to the sequencing technology used. This is needed by some of the bio-raum pipelines. 
-
-## Resources
-
-The following options can be set to control resource usage outside of a site-specific [config](https://github.com/marchoeppner/nf-configs) file.
-
-### `--max_cpus` [ default = 8]
-
-The maximum number of cpus a single job can request. This is typically the maximum number of cores available on a compute node or your local (development) machine. 
-
-### `--max_memory` [ default = 16.GB ]
-
-The maximum amount of memory a single job can request. This is typically the maximum amount og RAM available on a compute node or your local (development) machine. Typically it is advisable to set this a little lower than the maximum amount of RAM to prevent the machine from swapping. 
-
-### `--max_time`[ default = 240.h ]
-
-The maximum allowed run/wall time a single job can request. This is mostly relevant for environments where run time is restricted, such as in a computing cluster with active resource manager or possibly some cloud environments.  
+When setting this option, the samplesheet will contain an additional "platform" column with a best-guess as to the sequencing technology used. This is needed by some of the bio-raum pipelines, such as [gabi](https://github.com/bio-raum/gabi). 
